@@ -23,14 +23,9 @@ conn=establish_connection()
 cursor=conn.cursor()
 #for AIRPORT TABLE
 
-ICAO=input('enter the ICAO code : ')
-cursor.execute("SELECT * FROM airports where ident=%s",(ICAO,))
+country_code=input('enter the Country code : ')
+cursor.execute("SELECT * FROM airports where iso_country=%s ORDER BY type DESC",(country_code,))
 airport_rows=cursor.fetchall()
 if airport_rows:
     for items in airport_rows:
-        print(f'name: {items[3]}\nlocation :{items[10]} ')
-
-
-
-
-
+        print(f' {items[3]}\n:{items[2]} ')
